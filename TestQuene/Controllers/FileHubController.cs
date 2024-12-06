@@ -23,7 +23,10 @@ namespace TestQuene.Controllers
         {
             try
             {
+                // 排隊改為一個射後不理
+                // !!! 但是申請完立即拿到申請書?
                 string pdfPath = await _pdfConversionService.ConvertToPdfAsync(testString);
+                
                 Console.WriteLine($"PDF 已生成，路徑: {pdfPath}");
             }
             catch (Exception ex)

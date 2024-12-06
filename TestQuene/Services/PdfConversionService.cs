@@ -29,6 +29,11 @@ namespace TestQuene.Services
                         _totalConverted += 1;
                         Console.WriteLine($"已完成件數: {_totalConverted}");
 
+                        //if (need send email)
+                        //{
+                        //    // insert email    
+                        //}
+
                         return sourceFullPath;
                     }
 
