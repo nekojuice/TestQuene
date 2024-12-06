@@ -4,9 +4,11 @@ namespace TestQuene.Services
 {
     public class PdfConversionService
     {
-        private readonly ConversionQueue _conversionQueue = new ConversionQueue();
+        private readonly ConversionQueue _conversionQueue = new(2);
 
-        public Task<string> ConvertToPdfAsync(string sourceFullPath)
+        private int _totalConverted = 0;
+
+        public Task<string> ConvertToPdfAsync(string? sourceFullPath)
         {
             return _conversionQueue.Enqueue(async () =>
             {
@@ -21,18 +23,16 @@ namespace TestQuene.Services
 
                         await Task.Delay(5000);
 
+                        //throw new Exception("手動觸發失敗");
+
                         Console.WriteLine("end: " + sourceFullPath);
+                        _totalConverted += 1;
+                        Console.WriteLine($"已完成件數: {_totalConverted}");
 
                         return sourceFullPath;
                     }
 
-                    //pdfFullPath = ConvertToPdf(sourceFullPath);
-
-                    //if (File.Exists(pdfFullPath))
-                    //{
-                    //    return pdfFullPath;
-                    //}
-
+                    Console.WriteLine("一秒後重試");
                     await Task.Delay(1000);
                 }
 

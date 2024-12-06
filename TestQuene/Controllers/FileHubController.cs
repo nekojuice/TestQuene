@@ -19,7 +19,7 @@ namespace TestQuene.Controllers
 
         [Route("runQuene")]
         [HttpGet]
-        public async Task<IActionResult> RunQueneAsync(string testString)
+        public async Task<IActionResult> RunQueneAsync(string? testString)
         {
             try
             {
